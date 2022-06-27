@@ -1,0 +1,40 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Tester/1.0.0": {
+        "dependencies": {
+          "AStar": "1.0.0",
+          "AStarAbstr": "1.0.0"
+        },
+        "runtime": {
+          "Tester.dll": {}
+        }
+      },
+      "AStar/1.0.0": {
+        "dependencies": {
+          "AStarAbstr": "1.0.0"
+        },
+        "runtime": {
+          "AStar.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Tester/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AStar/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
