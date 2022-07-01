@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "AudTYuwK7d/RzIbGe3rP3ZUa9kyre0XWCxHpNwls9+7bfZpHWhxTlN1mJ52BWiNjFgrvXAu0SEH7PFd5CY3WBA==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\SingleMatrixTester\\SingleMatrixTester.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sdzeb\\.nuget\\packages\\collections\\5.0.0\\collections.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

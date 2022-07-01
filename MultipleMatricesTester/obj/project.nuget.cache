@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "/zoszmSFKMvYOhg9g4yWBwED8qBhWirbxaeXLhLQMfupGHV/ZaNt68uVPJ/d7/nqbS8us2Qx0TuMSO8ihQC/WA==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\MultipleMatricesTester\\MultipleMatricesTester.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sdzeb\\.nuget\\packages\\collections\\5.0.0\\collections.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

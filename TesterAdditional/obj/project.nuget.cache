@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GwntKBs5MP6YcgA5hS8EwAQR5FXLUH+duYS/tX5nhqm5M7uhm6PoPpAD6t2ovBXathK8LkjsA1JT21/WRVuyzg==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditional\\TesterAdditional.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sdzeb\\.nuget\\packages\\collections\\5.0.0\\collections.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -14,5 +14,17 @@ namespace SequentialAStar.Common
             GoalNode = startNode;
             Nodes = nodes;
         }
+
+        public void ResetAlgorithmInfo()
+        {
+            for (int x = 0; x < Size.x; x++)
+            {
+                for (int y = 0; y < Size.y; y++)
+                {
+                    Nodes[x, y].SequentialInfo.Reset();
+                    Nodes[x, y].ParallelInfo.Reset();
+                }
+            }
+        }
     }
 }

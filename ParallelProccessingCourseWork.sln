@@ -2,7 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AStar", "AStar\AStar.csproj", "{B759106B-B684-4F81-9868-1F9F6077E00A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{78F5212F-A0DD-4C00-9A99-AC47A660F02F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleMatrixTester", "SingleMatrixTester\SingleMatrixTester.csproj", "{78F5212F-A0DD-4C00-9A99-AC47A660F02F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleMatricesTester", "MultipleMatricesTester\MultipleMatricesTester.csproj", "{28D7A178-0241-40F2-BCE1-E2B000069496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterAdditional", "TesterAdditional\TesterAdditional.csproj", "{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +22,13 @@ Global
 		{78F5212F-A0DD-4C00-9A99-AC47A660F02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F5212F-A0DD-4C00-9A99-AC47A660F02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F5212F-A0DD-4C00-9A99-AC47A660F02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D7A178-0241-40F2-BCE1-E2B000069496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D7A178-0241-40F2-BCE1-E2B000069496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D7A178-0241-40F2-BCE1-E2B000069496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D7A178-0241-40F2-BCE1-E2B000069496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

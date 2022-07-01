@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Tester</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AStarAbstr\AStarAbstr.csproj" />
+      <ProjectReference Include="..\AStar\AStar.csproj" />
+      <ProjectReference Include="..\TesterAdditional\TesterAdditional.csproj" />
+    </ItemGroup>
+
+</Project>
