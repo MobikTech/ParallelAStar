@@ -1,10 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "GwntKBs5MP6YcgA5hS8EwAQR5FXLUH+duYS/tX5nhqm5M7uhm6PoPpAD6t2ovBXathK8LkjsA1JT21/WRVuyzg==",
+  "dgSpecHash": "e3FQtoYiBmUb2qVPHNaixRjzhJyuRoh1giLGGRoupv8lwEOfbmAo7SWxKcvb2aN683NdYMec56uOqI03XlfKlw==",
   "success": true,
   "projectFilePath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditional\\TesterAdditional.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\sdzeb\\.nuget\\packages\\collections\\5.0.0\\collections.5.0.0.nupkg.sha512"
+    "C:\\Users\\sdzeb\\.nuget\\packages\\collections\\5.0.0\\collections.5.0.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\consoletables\\2.4.2\\consoletables.2.4.2.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.reflection.typeextensions\\4.3.0\\system.reflection.typeextensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\sdzeb\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

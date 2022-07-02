@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using SequentialAStar.Common;
+using AStar.Common;
 
-namespace SequentialAStar.ParallelAStar
+namespace AStar.ParallelAStar
 {
     public enum ProcessType
     {
         Forward,
         Backward
     }
-    public class ThreadHandler
+    
+    public class ThreadWorker
     {
         private readonly List<Node> _openList;
         private readonly List<Node> _closedList;
@@ -20,84 +20,73 @@ namespace SequentialAStar.ParallelAStar
         private readonly Node _startNode;
         private readonly Node _goalNode;
         private readonly ProcessType _processType;
-        
-        public Action<Path>? HalfPathFound;
-        private Path? _halfPath;
-        private static bool s_founded;
-        private static Node _metNode;
+        private readonly CancellationTokenSource _oppositeSearcherCancellationToken;
+        private readonly CancellationToken _token;
 
-        public ThreadHandler(Matrix matrix, Node startNode, Node goalNode, ProcessType processType)
+        public Action<Path>? HalfPathFound;
+
+        public ThreadWorker(Matrix matrix, Node startNode, Node goalNode, ProcessType processType, 
+            CancellationTokenSource oppositeSearcherCancellationToken, CancellationToken token)
         {
             _matrix = matrix;
             _startNode = startNode;
             _goalNode = goalNode;
             _processType = processType;
+            _oppositeSearcherCancellationToken = oppositeSearcherCancellationToken;
+            _token = token;
 
             _openList = new List<Node>(){ _startNode };
             _startNode.ParallelInfo.CountToFirst = 0;
             _closedList = new List<Node>();
-            _metNode = null;
         }
-        
+
         public void GetShortestPath()
         {
-            s_founded = false;
             while (_openList.Count > 0)
             {
-                Console.WriteLine($"{_processType} {_closedList.Count}");
-                if (s_founded)
-                {
-                    _halfPath ??= GetPathTo(_metNode);
-                    HalfPathFound?.Invoke(_halfPath);
-                    Console.WriteLine($"PATH FOUND ON {_processType} {_halfPath.Nodes.Last().Position}");
+                if (_token.IsCancellationRequested || _oppositeSearcherCancellationToken.IsCancellationRequested)
                     return;
-                }
 
                 Node currentNode = _openList.OrderBy(F).First();
 
-                // if (IsFinal(currentNode))
-                // {
-                //     s_founded = true;
-                //     HalfPathFound?.Invoke(GetPathTo(currentNode));
-                //     return;
-                // }
-
                 _openList.Remove(currentNode);
-                AddToClosedList(currentNode);
+                _closedList.Add(currentNode);
 
                 HandleNeighbours(currentNode);
             }
 
+            Console.WriteLine($"{_processType}: PATH NOT FOUND");
             HalfPathFound?.Invoke(new Path(null, false));
         }
-        
+    
         private void HandleNeighbours(Node parent)
         {
             foreach (Node neighbour in parent.Neighbors)
             {
-                if (MetAnotherProcess(neighbour))
-                {
-                    Console.WriteLine($"Met on {_processType} {neighbour.Position}");
-                    lock (neighbour)
-                    {
-                        Node oldParent = neighbour.ParallelInfo.Parent;
-                        neighbour.ParallelInfo.Parent = parent;
-                        Path path = GetPathTo(neighbour);
-                        neighbour.ParallelInfo.Parent = oldParent;
-
-                        _halfPath = path;
-                        _metNode = neighbour;
-                        s_founded = true;
-                    }
-                    return;
-                }
-                
                 if (_closedList.Contains(neighbour))
                     continue;
 
+                if (MetAnotherProcess(neighbour))
+                {
+                    _oppositeSearcherCancellationToken.Cancel();
+            
+                    Path thisPath = GetPathTo(parent);
+                    thisPath.Nodes.Add(neighbour);
+
+                    Path anotherPath = GetPathTo(neighbour);
+
+                    Path fullPath = GetFullPath(thisPath, anotherPath);
+                    HalfPathFound?.Invoke(fullPath);
+                    // Console.WriteLine($"{_processType}: PATH FOUND from {fullPath.Nodes.First().Position} to {fullPath.Nodes.Last().Position}");
+                    return;
+                }
+                
+                if (_token.IsCancellationRequested)
+                    return;
+
                 if (!_openList.Contains(neighbour))
                 {
-                    _openList.Add(neighbour);
+                    AddToOpenList(neighbour);
                     neighbour.ParallelInfo.Parent = parent;
                     neighbour.ParallelInfo.CountToFirst = parent.ParallelInfo.CountToFirst + 1;
                 }
@@ -114,34 +103,30 @@ namespace SequentialAStar.ParallelAStar
         }
 
         
-        
-        private bool IsFinal(Node currentNode) => currentNode == _goalNode;
         private int F(Node node) => G(node) + H(node);
         private int G(Node node) => node.ParallelInfo.CountToFirst.Value;
-        private int H(Node node) => DistanceBetweenNodes(node, _matrix.GoalNode);
+        private int H(Node node) => DistanceBetweenNodes(node, _goalNode);
         private int DistanceBetweenNodes(Node node1, Node node2) => Math.Abs(node1.Position.X - node2.Position.X) +
                                                                     Math.Abs(node1.Position.Y - node2.Position.Y);
-
         private bool MetAnotherProcess(Node node)
         {
             return _processType switch
             {
-                ProcessType.Forward => node.ParallelInfo.InBackwardClosedList,
-                ProcessType.Backward => node.ParallelInfo.InForwardClosedList,
+                ProcessType.Forward => node.ParallelInfo.InBackwardOpenList,
+                ProcessType.Backward => node.ParallelInfo.InForwardOpenList,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-
-        private void AddToClosedList(Node currentNode)
+        private void AddToOpenList(Node currentNode)
         {
-            _closedList.Add(currentNode);
+            _openList.Add(currentNode);
             switch (_processType)
             {
                 case ProcessType.Forward:
-                    currentNode.ParallelInfo.InForwardClosedList = true;
+                    currentNode.ParallelInfo.InForwardOpenList = true;
                     break;
                 case ProcessType.Backward:
-                    currentNode.ParallelInfo.InBackwardClosedList = true;
+                    currentNode.ParallelInfo.InBackwardOpenList = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -159,6 +144,28 @@ namespace SequentialAStar.ParallelAStar
 
             path.Reverse();
             return new Path(path, true);
+        }
+        private Path GetFullPath(Path thisPath, Path anotherPath)
+        {
+            return _processType switch
+            {
+                ProcessType.Forward => JoinPaths(thisPath, anotherPath),
+                ProcessType.Backward => JoinPaths(anotherPath, thisPath),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+        private Path JoinPaths(Path forwardPath, Path backwardPath)
+        {
+            if (!forwardPath.IsPathExisting || !backwardPath.IsPathExisting)
+                return new Path(null, false);
+
+            IEnumerable<Node> secondPart = backwardPath.Nodes
+                .Take(backwardPath.Nodes.Count() - 1)
+                .Reverse();
+
+            IEnumerable<Node> firstPart = forwardPath.Nodes;
+
+            return new Path(firstPart.Concat(secondPart).ToList(), true);
         }
 
     }

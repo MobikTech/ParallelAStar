@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SequentialAStar.Common;
+using AStar.Common;
 
-namespace SequentialAStar.SequentialAStar
+namespace AStar.SequentialAStar
 {
     public class SequentialAStar : IPathFinder
     {
@@ -14,7 +14,6 @@ namespace SequentialAStar.SequentialAStar
         private void Init(Matrix matrix)
         {
             _matrix = matrix;
-            _matrix.ResetAlgorithmInfo();
             _openList = new List<Node>(){ _matrix.StartNode };
             _openList[0].SequentialInfo.CountToFirst = 0;
             _closedList = new List<Node>();
@@ -37,7 +36,7 @@ namespace SequentialAStar.SequentialAStar
                 HandleNeighbours(currentNode);
             }
 
-            return new Path(Array.Empty<Node>(), false);
+            return new Path(null, false);
         }
 
         private void HandleNeighbours(Node parent)

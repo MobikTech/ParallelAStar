@@ -21,3 +21,4 @@ D:\Projects\C#\ParallelProccessingCourseWork\MultipleMatricesTester\obj\Debug\ne
 D:\Projects\C#\ParallelProccessingCourseWork\MultipleMatricesTester\obj\Debug\net5.0\MultipleMatricesTester.genruntimeconfig.cache
 D:\Projects\C#\ParallelProccessingCourseWork\MultipleMatricesTester\bin\Debug\net5.0\Collections.dll
 D:\Projects\C#\ParallelProccessingCourseWork\MultipleMatricesTester\bin\Debug\net5.0\de\Collections.resources.dll
+D:\Projects\C#\ParallelProccessingCourseWork\MultipleMatricesTester\bin\Debug\net5.0\ConsoleTables.dll

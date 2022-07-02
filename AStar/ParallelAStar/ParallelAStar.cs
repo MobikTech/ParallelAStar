@@ -1,39 +1,24 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using SequentialAStar.Common;
+using AStar.Common;
 
-namespace SequentialAStar.ParallelAStar
+namespace AStar.ParallelAStar
 {
     public class ParallelAStar : IPathFinder
     {
-        private Matrix _matrix;
-        private Task _forward;
-        private Task _backward;
-
-        // private bool _founded;
-        private Path? _foundedPath;
-
-        private void Init(Matrix matrix)
-        {
-            _matrix = matrix;
-            matrix.ResetAlgorithmInfo();
-        }
-
         public Path GetShortestPath(Matrix matrix)
         {
-            Init(matrix);
+            CancellationTokenSource forwardSource = new CancellationTokenSource();
+            CancellationTokenSource backwardSource = new CancellationTokenSource();
 
-            ThreadHandler forwardHandler = new ThreadHandler(_matrix, _matrix.StartNode, _matrix.GoalNode, ProcessType.Forward);
-            ThreadHandler backwardHandler = new ThreadHandler(_matrix, _matrix.GoalNode, _matrix.StartNode, ProcessType.Backward);
+            
+            ThreadWorker forwardWorker = new ThreadWorker(matrix, matrix.StartNode, matrix.GoalNode, ProcessType.Forward, backwardSource, forwardSource.Token);
+            ThreadWorker backwardWorker = new ThreadWorker(matrix, matrix.GoalNode, matrix.StartNode, ProcessType.Backward, forwardSource, backwardSource.Token);
 
-            Path forwardPath = null;
-            Path backwardPath = null;
+            Path fullPath = null;
 
-            forwardHandler.HalfPathFound += path => forwardPath = path;
-            backwardHandler.HalfPathFound += path => backwardPath = path;
+            forwardWorker.HalfPathFound += path => fullPath = path;
+            backwardWorker.HalfPathFound += path => fullPath = path;
 
             // Thread forward = new Thread(forwardHandler.GetShortestPath);
             // Thread backward = new Thread(backwardHandler.GetShortestPath);
@@ -41,25 +26,13 @@ namespace SequentialAStar.ParallelAStar
             // backward.Start();
             // forward.Join();
             // backward.Join();
-            _forward = Task.Run(forwardHandler.GetShortestPath);
-            _backward = Task.Run(backwardHandler.GetShortestPath);
-            Task.WaitAll(_forward, _backward);
-
-            return GetFullPath(forwardPath, backwardPath);
-        }
-
-        private Path GetFullPath(Path forwardPath, Path backwardPath)
-        {
-            if (!forwardPath.IsPathExisting || !backwardPath.IsPathExisting)
-                return new Path(null, false);
-
-            IEnumerable<Node> secondPart = backwardPath.Nodes
-                .Take(backwardPath.Nodes.Count() - 1)
-                .Reverse();
-
-           IEnumerable<Node> firstPart = forwardPath.Nodes;
-
-           return new Path(firstPart.Concat(secondPart), true);
+            
+            Task forwardTask = Task.Run(forwardWorker.GetShortestPath, forwardSource.Token);
+            Task backwardTask = Task.Run(backwardWorker.GetShortestPath, backwardSource.Token);
+            
+            Task.WaitAll(forwardTask, backwardTask);
+            
+            return fullPath;
         }
     }
 }

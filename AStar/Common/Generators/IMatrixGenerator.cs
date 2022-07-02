@@ -1,4 +1,4 @@
-namespace SequentialAStar.Common.Generators
+namespace AStar.Common.Generators
 {
     public interface IMatrixGenerator
     {

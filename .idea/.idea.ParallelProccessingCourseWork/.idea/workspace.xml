@@ -17,21 +17,27 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/29a328843bdc4762af89c8fdc084c4d68f5778/4a/2eb67b38/IDictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SingleMatrixTester/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/85439f6eae98fa347ee1d64e1d66ef769eaa9e98ad0a848cca2f75fdead69/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ae3b8c2352644cb8bd63d2fff2c579a12200/4c/db3c21ba/ListView`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7282cd7d3954f72ff4e3c638e5837c18bfa84731a41a371ca5fbee5d878868d/Task.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd5774dddb9bdcbed2a15126b9cf796867223e95ca85c7d37f77477d345b/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c9310ac1c5754bf34caa7c11d8b5a4b1f814d9a6f519a35a8e2d2aa0f57a60/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9c3db527145fc2102591d8515f31de211437e4119023a9f77b6e4283b6f8b/Thread.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1a911b39fabff3689eebdd2d8d8a6d8cb57943209044619ff08014e9a7674cdb/OrderBy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61f695f691c245d19d015128e4e8bedc8f5db0/0/ThreadStart.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61f695f691c245d19d015128e4e8bedc8f5db0/0/ParameterizedThreadStart.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f0e9c8173e40dc18fd8d6710284885d56ec3334a7861736ae89bb53f07c1375/CancellationTokenSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/53d02d2bde35d1e038b9edc3566ae39772b41b2df0d9577344fbdbce8a74661a/Thread.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c874914dd50d8a83a48b56495ec0d8a514a0c389685f67497b659adabbde7a/BinaryHeap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6333ced5c1637f172e4be21b777c5cb32bc5d8540ef1ae120919233cf698b44/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61f695f691c245d19d015128e4e8bedc8f5db0/e3/38aba0a1/TaskCreationOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ae3b8c2352644cb8bd63d2fff2c579a12200/88/2ad61a4c/BinaryHeapExt.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bfdaa99f368b9c65df2db3768f64a73015ee985988e4cb147b7f07e5d254a/ConsoleTable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61f695f691c245d19d015128e4e8bedc8f5db0/7e/514ef30e/Func`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8b8dfe38222c6cd6639049fa7cc4a22395bc692372abdd876eeb13c89/AutoResetEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/dc43a28d7d6f17e8f8f9e53e4745b07d4567a195708b2fc817a5809926861dc9/TaskFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d3ff4555dce2a34552be127243ef8c91762848e203ffbf6ab1dc34733c8af20/Console.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -111,7 +117,7 @@
       <workItem from="1656520194212" duration="202000" />
       <workItem from="1656525093183" duration="1875000" />
       <workItem from="1656577282691" duration="10818000" />
-      <workItem from="1656599429969" duration="25376000" />
+      <workItem from="1656599429969" duration="52967000" />
     </task>
     <servers />
   </component>
@@ -122,5 +128,12 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="DotNetProject">
+        <watch expression="this._closedList" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

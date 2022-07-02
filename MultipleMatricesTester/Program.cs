@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SequentialAStar.Common;
-using SequentialAStar.Common.Generators;
-using SequentialAStar.ParallelAStar;
-using SequentialAStar.SequentialAStar;
+using AStar.Common;
+using AStar.Common.Generators;
+using AStar.ParallelAStar;
+using AStar.SequentialAStar;
 using TesterAdditional;
+using ConsoleTables;
 
 namespace MultipleMatricesTester
 {
@@ -13,100 +14,96 @@ namespace MultipleMatricesTester
     {
         private const int StartMatrixSize = 50;
         private const int MatrixSizeStep = 50;
-        private const int Times = 1;
+        private const int Times = 8;
         
         static void Main(string[] args)
         {
-            IPathFinder sequentialAStar = new SequentialAStar.SequentialAStar.SequentialAStar();
+            IPathFinder sequentialAStar = new SequentialAStar();
             IPathFinder parallelAStar = new ParallelAStar();
             
-            IEnumerable<(int, Result, Result)> results = TestMultiple(sequentialAStar, parallelAStar);
+            IEnumerable<ComparisonResult> results = TestMultiple(sequentialAStar, parallelAStar);
             
             VisualizeResults(results);
         }
 
-        private static IEnumerable<(int, Result, Result)> TestMultiple(IPathFinder sequentialAStar, IPathFinder parallelAStar)
+        public struct AlgorithmResult
+        {
+            public readonly Path Path;
+            public readonly long Time;
+
+            public AlgorithmResult(Path path, long time)
+            {
+                Path = path;
+                Time = time;
+            }
+        }
+        public struct ComparisonResult
+        {
+            public readonly int MatrixSize;
+            public readonly AlgorithmResult SequentialResult;
+            public readonly AlgorithmResult ParallelResult;
+            public readonly float SpeedupFactor;
+
+            public ComparisonResult(int matrixSize, AlgorithmResult sequentialResult, AlgorithmResult parallelResult, float speedupFactor)
+            {
+                SequentialResult = sequentialResult;
+                ParallelResult = parallelResult;
+                SpeedupFactor = speedupFactor;
+                MatrixSize = matrixSize;
+            }
+        }
+
+        private static IEnumerable<ComparisonResult> TestMultiple(IPathFinder sequentialAStar, IPathFinder parallelAStar)
         {
             int size = StartMatrixSize;
             TimeWatcher timeTester = new TimeWatcher();
             IMatrixGenerator generator = new RandomMatrixGenerator();
-            List<(int, Result, Result)> results = new List<(int, Result, Result)>();
+            List<ComparisonResult> results = new List<ComparisonResult>();
 
             for (int i = 0; i < Times; i++)
             {
                 Matrix matrix = generator.Generate(0.9f, (size, size));
                 Console.Write("generated, ");
 
+                matrix.ResetAlgorithmInfo();
                 long sequentialTime = timeTester.TestSync(sequentialAStar.GetShortestPath, matrix, out Path pathSequential);
+                matrix.ResetAlgorithmInfo();
                 long parallelTime = timeTester.TestSync(parallelAStar.GetShortestPath, matrix, out Path pathParallel);
                 Console.WriteLine("tested " + i);
-
-                Result sequentialResult = new Result(pathSequential, sequentialTime);
-                Result parallelResult = new Result(pathParallel, parallelTime);
                 
-                results.Add((size, sequentialResult, parallelResult));
+                AlgorithmResult sequentialAlgorithmResult = new AlgorithmResult(pathSequential, sequentialTime);
+                AlgorithmResult parallelAlgorithmResult = new AlgorithmResult(pathParallel, parallelTime);
+
+                float speedupFactor = (float) (sequentialTime == 0 ? 1 : sequentialTime) / 
+                                      (parallelTime == 0 ? 1 : parallelTime);
+
+                results.Add(new ComparisonResult(size, sequentialAlgorithmResult, parallelAlgorithmResult, speedupFactor));
                 size += MatrixSizeStep;
             }
 
             return results;
         }
 
-        private static void VisualizeResults(IEnumerable<(int matrixSize, Result sequentialResult, Result parallelResult)> results)
+        private static void VisualizeResults(IEnumerable<ComparisonResult> results)
         {
-            Console.WriteLine($"Matrix size\tSeq time\tSeq path length\tSeq path exists\tPar time\tPar path length\tPar path exists");
+            var table = new ConsoleTable("Matrix size", "Sequential time", "Sequential path length", "Sequential path exists", 
+                "Parallel time", "Parallel path length", "Parallel path exists", "Speedup factor");
+
             foreach (var result in results)
             {
-                Console.WriteLine($"{result.matrixSize}х{result.matrixSize}" +
-                                  $"\t\t{result.sequentialResult.Time} ms" +
-                                  $"\t\t{result.sequentialResult.Path.Nodes.Count()}" +
-                                  $"\t\t{result.sequentialResult.Path.IsPathExisting}" +
-                                  $"\t\t{result.parallelResult.Time} ms" +
-                                  $"\t\t{result.parallelResult.Path.Nodes.Count()}" +
-                                  $"\t\t{result.parallelResult.Path.IsPathExisting}");
+                table.AddRow($"{result.MatrixSize}х{result.MatrixSize}",
+                    result.SequentialResult.Time + "ms",
+                    result.SequentialResult.Path.Nodes?.Count,
+                    result.SequentialResult.Path.IsPathExisting,
+                    result.ParallelResult.Time + "ms",
+                    result.ParallelResult.Path.Nodes?.Count,
+                    result.ParallelResult.Path.IsPathExisting,
+                    result.SpeedupFactor);
             }
-        }
+            
+            table.Write();
 
-        private struct Result
-        {
-            public readonly Path Path;
-            public readonly long Time;
-
-            public Result(Path path, long time)
-            {
-                Path = path;
-                Time = time;
-            }
+            Console.WriteLine($"Average speedup acceleration - {results.Select(result => result.SpeedupFactor).Average()}");
         }
-        
-        // private static IEnumerable<(int, long, long)> TestMultipleWithGeneration(int startSize, int step, int times, IPathFinder pathFinder)
-        // {
-        //     int size = startSize;
-        //     TimeTester timeTester = new TimeTester();
-        //     IMatrixGenerator generator = new RandomMatrixGenerator();
-        //     List<(int, long, long)> results = new List<(int, long, long)>();
-        //
-        //     for (int i = 0; i < times; i++)
-        //     {
-        //         long generationTime = timeTester.TestSync(generator.Generate, 0.9f, (size, size), out Matrix matrix);
-        //         Console.Write("generated ");
-        //         long time = timeTester.TestSync(pathFinder.GetShortestPath, matrix, out Path path);
-        //         results.Add((size, time, generationTime));
-        //         size += step;
-        //         Console.WriteLine(i);
-        //     }
-        //
-        //     return results;
-        // }
-        //
-        //
-        // private static void VisualizeResultsWithGeneration(IEnumerable<(int matrixSize, long time, long generationTime)> results)
-        // {
-        //     Console.WriteLine($"Matrix size\tTime\tGeneration time");
-        //     foreach (var result in results)
-        //     {
-        //         Console.WriteLine($"{result.matrixSize}\t\t{result.time} ms\t\t{result.generationTime} ms");
-        //     }
-        // }
     }
-    
 }

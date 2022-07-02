@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SequentialAStar.Common
+namespace AStar.Common
 {
     public enum Passing
     {
@@ -25,8 +25,7 @@ namespace SequentialAStar.Common
         public SequentialInfo SequentialInfo { get; }
         public ParallelInfo ParallelInfo { get; }
 
-
-        
+        public override string ToString() => Position.ToString();
     }
 
     public class SequentialInfo
@@ -49,15 +48,15 @@ namespace SequentialAStar.Common
 
         public Node? Parent { get; set; }
         public int? CountToFirst { get; set; }
-        public bool InForwardClosedList { get; set; }
-        public bool InBackwardClosedList { get; set; }
+        public bool InForwardOpenList { get; set; }
+        public bool InBackwardOpenList { get; set; }
         
         public void Reset()
         {
             Parent = null;
             CountToFirst = null;
-            InForwardClosedList = false;
-            InBackwardClosedList = false;
+            InForwardOpenList = false;
+            InBackwardOpenList = false;
         }
     }
 }

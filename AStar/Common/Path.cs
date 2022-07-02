@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SequentialAStar.Common
+namespace AStar.Common
 {
-    public record Path(IEnumerable<Node>? Nodes, bool IsPathExisting);
+    public record Path(List<Node>? Nodes, bool IsPathExisting);
 }

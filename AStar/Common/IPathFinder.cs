@@ -1,6 +1,4 @@
-using System;
-
-namespace SequentialAStar.Common
+namespace AStar.Common
 {
     public interface IPathFinder
     {

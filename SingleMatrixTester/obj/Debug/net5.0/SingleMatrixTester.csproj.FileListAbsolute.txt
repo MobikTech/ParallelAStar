@@ -19,3 +19,6 @@ D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\ref\SingleMatrixTester.dll
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\SingleMatrixTester.pdb
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\SingleMatrixTester.genruntimeconfig.cache
+D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\Collections.dll
+D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\de\Collections.resources.dll
+D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\ConsoleTables.dll

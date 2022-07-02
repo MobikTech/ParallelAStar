@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SequentialAStar.Common.Generators
+namespace AStar.Common.Generators
 {
     public class ManualMatrixGenerator : IMatrixGenerator
     {

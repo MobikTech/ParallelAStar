@@ -1,4 +1,4 @@
-namespace SequentialAStar.Common
+namespace AStar.Common
 {
     public struct Position
     {
