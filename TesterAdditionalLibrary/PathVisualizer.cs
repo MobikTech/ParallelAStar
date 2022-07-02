@@ -1,8 +1,7 @@
 using System;
-using System.Linq;
 using AStar.Common;
 
-namespace TesterAdditional
+namespace TesterAdditionalLibrary
 {
     public class PathVisualizer
     {
@@ -14,6 +13,11 @@ namespace TesterAdditional
 
         public void Visualize(Matrix matrix, Path path)
         {
+            if (path.Nodes == null)
+            {
+                Console.WriteLine("PATH NOT FOUND");
+                return;
+            }
             for (int y = 0; y < matrix.Size.y; y++)
             {
                 for (int x = 0; x < matrix.Size.x; x++)

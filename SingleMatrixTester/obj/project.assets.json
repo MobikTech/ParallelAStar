@@ -153,17 +153,17 @@
           "bin/placeholder/AStarAbstr.dll": {}
         }
       },
-      "TesterAdditional/1.0.0": {
+      "TesterAdditionalLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "AStar": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/TesterAdditional.dll": {}
+          "bin/placeholder/TesterAdditionalLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/TesterAdditional.dll": {}
+          "bin/placeholder/TesterAdditionalLibrary.dll": {}
         }
       }
     }
@@ -747,17 +747,17 @@
       "path": "../AStarAbstr/AStarAbstr.csproj",
       "msbuildProject": "../AStarAbstr/AStarAbstr.csproj"
     },
-    "TesterAdditional/1.0.0": {
+    "TesterAdditionalLibrary/1.0.0": {
       "type": "project",
-      "path": "../TesterAdditional/TesterAdditional.csproj",
-      "msbuildProject": "../TesterAdditional/TesterAdditional.csproj"
+      "path": "../TesterAdditionalLibrary/TesterAdditionalLibrary.csproj",
+      "msbuildProject": "../TesterAdditionalLibrary/TesterAdditionalLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
       "AStar >= 1.0.0",
       "AStarAbstr >= 1.0.0",
-      "TesterAdditional >= 1.0.0"
+      "TesterAdditionalLibrary >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -793,8 +793,8 @@
             "D:\\Projects\\C#\\ParallelProccessingCourseWork\\AStar\\AStar.csproj": {
               "projectPath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\AStar\\AStar.csproj"
             },
-            "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditional\\TesterAdditional.csproj": {
-              "projectPath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditional\\TesterAdditional.csproj"
+            "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditionalLibrary\\TesterAdditionalLibrary.csproj": {
+              "projectPath": "D:\\Projects\\C#\\ParallelProccessingCourseWork\\TesterAdditionalLibrary\\TesterAdditionalLibrary.csproj"
             }
           }
         }

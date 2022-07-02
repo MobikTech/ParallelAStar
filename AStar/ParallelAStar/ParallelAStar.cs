@@ -12,16 +12,16 @@ namespace AStar.ParallelAStar
             CancellationTokenSource backwardSource = new CancellationTokenSource();
 
             
-            ThreadWorker forwardWorker = new ThreadWorker(matrix, matrix.StartNode, matrix.GoalNode, ProcessType.Forward, backwardSource, forwardSource.Token);
-            ThreadWorker backwardWorker = new ThreadWorker(matrix, matrix.GoalNode, matrix.StartNode, ProcessType.Backward, forwardSource, backwardSource.Token);
+            ThreadWorker forwardWorker = new ThreadWorker(matrix.StartNode, matrix.GoalNode, ProcessType.Forward, backwardSource, forwardSource.Token);
+            ThreadWorker backwardWorker = new ThreadWorker(matrix.GoalNode, matrix.StartNode, ProcessType.Backward, forwardSource, backwardSource.Token);
 
             Path fullPath = null;
 
-            forwardWorker.HalfPathFound += path => fullPath = path;
-            backwardWorker.HalfPathFound += path => fullPath = path;
+            forwardWorker.PathFound += path => fullPath = path;
+            backwardWorker.PathFound += path => fullPath = path;
 
-            // Thread forward = new Thread(forwardHandler.GetShortestPath);
-            // Thread backward = new Thread(backwardHandler.GetShortestPath);
+            // Thread forward = new Thread(forwardWorker.GetShortestPath);
+            // Thread backward = new Thread(backwardWorker.GetShortestPath);
             // forward.Start();
             // backward.Start();
             // forward.Join();

@@ -9,7 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\AStarAbstr\AStarAbstr.csproj" />
       <ProjectReference Include="..\AStar\AStar.csproj" />
-      <ProjectReference Include="..\TesterAdditional\TesterAdditional.csproj" />
+      <ProjectReference Include="..\TesterAdditionalLibrary\TesterAdditionalLibrary.csproj" />
     </ItemGroup>
 
 </Project>

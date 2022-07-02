@@ -16,27 +16,23 @@ namespace AStar.ParallelAStar
     {
         private readonly List<Node> _openList;
         private readonly List<Node> _closedList;
-        private readonly Matrix _matrix;
-        private readonly Node _startNode;
         private readonly Node _goalNode;
         private readonly ProcessType _processType;
         private readonly CancellationTokenSource _oppositeSearcherCancellationToken;
         private readonly CancellationToken _token;
 
-        public Action<Path>? HalfPathFound;
+        public Action<Path>? PathFound;
 
-        public ThreadWorker(Matrix matrix, Node startNode, Node goalNode, ProcessType processType, 
+        public ThreadWorker(Node startNode, Node goalNode, ProcessType processType, 
             CancellationTokenSource oppositeSearcherCancellationToken, CancellationToken token)
         {
-            _matrix = matrix;
-            _startNode = startNode;
             _goalNode = goalNode;
             _processType = processType;
             _oppositeSearcherCancellationToken = oppositeSearcherCancellationToken;
             _token = token;
 
-            _openList = new List<Node>(){ _startNode };
-            _startNode.ParallelInfo.CountToFirst = 0;
+            _openList = new List<Node>(){ startNode };
+            startNode.ParallelInfo.CountToFirst = 0;
             _closedList = new List<Node>();
         }
 
@@ -56,7 +52,7 @@ namespace AStar.ParallelAStar
             }
 
             Console.WriteLine($"{_processType}: PATH NOT FOUND");
-            HalfPathFound?.Invoke(new Path(null, false));
+            PathFound?.Invoke(new Path(null, false));
         }
     
         private void HandleNeighbours(Node parent)
@@ -66,6 +62,7 @@ namespace AStar.ParallelAStar
                 if (_closedList.Contains(neighbour))
                     continue;
 
+                
                 if (MetAnotherProcess(neighbour))
                 {
                     _oppositeSearcherCancellationToken.Cancel();
@@ -76,13 +73,14 @@ namespace AStar.ParallelAStar
                     Path anotherPath = GetPathTo(neighbour);
 
                     Path fullPath = GetFullPath(thisPath, anotherPath);
-                    HalfPathFound?.Invoke(fullPath);
+                    PathFound?.Invoke(fullPath);
                     // Console.WriteLine($"{_processType}: PATH FOUND from {fullPath.Nodes.First().Position} to {fullPath.Nodes.Last().Position}");
                     return;
                 }
                 
-                if (_token.IsCancellationRequested)
-                    return;
+                // if (_token.IsCancellationRequested)
+                //     return;
+                //
 
                 if (!_openList.Contains(neighbour))
                 {
@@ -93,11 +91,9 @@ namespace AStar.ParallelAStar
                 else
                 {
                     int cost = G(parent) + 1;
-                    if (cost < G(neighbour))
-                    {
-                        neighbour.ParallelInfo.Parent = parent;
-                        neighbour.ParallelInfo.CountToFirst = parent.ParallelInfo.CountToFirst + 1;
-                    }
+                    if (cost >= G(neighbour)) continue;
+                    neighbour.ParallelInfo.Parent = parent;
+                    neighbour.ParallelInfo.CountToFirst = parent.ParallelInfo.CountToFirst + 1;
                 }
             }
         }

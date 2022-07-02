@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using AStar.Common;
 using AStar.Common.Generators;
 using AStar.ParallelAStar;
 using AStar.SequentialAStar;
-using TesterAdditional;
+using TesterAdditionalLibrary;
 
 namespace Tester
 {
     static class Program
     {
-        private const int MatrixSize = 20;
+        private const int MatrixSize = 30;
         
         static void Main()
         {

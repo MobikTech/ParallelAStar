@@ -6,9 +6,7 @@ D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\ref\SingleMatrixTester.dll
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\SingleMatrixTester.pdb
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\AStar.dll
-D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\TesterAdditional.dll
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\AStar.pdb
-D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\TesterAdditional.pdb
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\SingleMatrixTester.csproj.AssemblyReference.cache
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\SingleMatrixTester.GeneratedMSBuildEditorConfig.editorconfig
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0\SingleMatrixTester.AssemblyInfoInputs.cache
@@ -22,3 +20,5 @@ D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\obj\Debug\net5.0
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\Collections.dll
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\de\Collections.resources.dll
 D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\ConsoleTables.dll
+D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\TesterAdditionalLibrary.dll
+D:\Projects\C#\ParallelProccessingCourseWork\SingleMatrixTester\bin\Debug\net5.0\TesterAdditionalLibrary.pdb

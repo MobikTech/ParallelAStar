@@ -5,16 +5,16 @@ using AStar.Common;
 using AStar.Common.Generators;
 using AStar.ParallelAStar;
 using AStar.SequentialAStar;
-using TesterAdditional;
 using ConsoleTables;
+using TesterAdditionalLibrary;
 
 namespace MultipleMatricesTester
 {
     public class Program
     {
-        private const int StartMatrixSize = 50;
+        private const int StartMatrixSize = 200;
         private const int MatrixSizeStep = 50;
-        private const int Times = 8;
+        private const int Times = 5;
         
         static void Main(string[] args)
         {
@@ -74,8 +74,8 @@ namespace MultipleMatricesTester
                 AlgorithmResult sequentialAlgorithmResult = new AlgorithmResult(pathSequential, sequentialTime);
                 AlgorithmResult parallelAlgorithmResult = new AlgorithmResult(pathParallel, parallelTime);
 
-                float speedupFactor = (float) (sequentialTime == 0 ? 1 : sequentialTime) / 
-                                      (parallelTime == 0 ? 1 : parallelTime);
+                float speedupFactor = (float) (sequentialTime == 0 ? 0.1f : sequentialTime) / 
+                                      (parallelTime == 0 ? 0.1f : parallelTime);
 
                 results.Add(new ComparisonResult(size, sequentialAlgorithmResult, parallelAlgorithmResult, speedupFactor));
                 size += MatrixSizeStep;

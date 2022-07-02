@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleMatrixTester", "Singl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleMatricesTester", "MultipleMatricesTester\MultipleMatricesTester.csproj", "{28D7A178-0241-40F2-BCE1-E2B000069496}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterAdditional", "TesterAdditional\TesterAdditional.csproj", "{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterAdditionalLibrary", "TesterAdditionalLibrary\TesterAdditionalLibrary.csproj", "{0712D5E8-FF2C-4DF1-8B3D-B752CF151755}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

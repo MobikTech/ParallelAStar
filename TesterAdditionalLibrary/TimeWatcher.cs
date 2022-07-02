@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace TesterAdditional
+namespace TesterAdditionalLibrary
 {
     public class TimeWatcher
     {

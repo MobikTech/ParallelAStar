@@ -54,7 +54,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.MultipleMatricesTester">
+  <component name="RunManager" selected=".NET Project.SingleMatrixTester">
     <configuration name="MultipleMatricesTester" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/MultipleMatricesTester/bin/Debug/net5.0/MultipleMatricesTester.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -117,7 +117,7 @@
       <workItem from="1656520194212" duration="202000" />
       <workItem from="1656525093183" duration="1875000" />
       <workItem from="1656577282691" duration="10818000" />
-      <workItem from="1656599429969" duration="52967000" />
+      <workItem from="1656599429969" duration="58796000" />
     </task>
     <servers />
   </component>

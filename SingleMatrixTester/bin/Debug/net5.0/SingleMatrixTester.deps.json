@@ -10,7 +10,7 @@
         "dependencies": {
           "AStar": "1.0.0",
           "AStarAbstr": "1.0.0",
-          "TesterAdditional": "1.0.0"
+          "TesterAdditionalLibrary": "1.0.0"
         },
         "runtime": {
           "SingleMatrixTester.dll": {}
@@ -103,12 +103,12 @@
           "AStar.dll": {}
         }
       },
-      "TesterAdditional/1.0.0": {
+      "TesterAdditionalLibrary/1.0.0": {
         "dependencies": {
           "AStar": "1.0.0"
         },
         "runtime": {
-          "TesterAdditional.dll": {}
+          "TesterAdditionalLibrary.dll": {}
         }
       }
     }
@@ -201,7 +201,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "TesterAdditional/1.0.0": {
+    "TesterAdditionalLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
