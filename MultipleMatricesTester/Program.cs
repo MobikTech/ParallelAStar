@@ -12,10 +12,10 @@ namespace MultipleMatricesTester
 {
     public class Program
     {
-        private const int StartMatrixSize = 50;
+        private const int StartMatrixSize = 100;
         private const int MatrixSizeStep = 50;
-        private const int Times = 8;
-        private const int RepeatTimes = 2;
+        private const int Times = 10;
+        private const int RepeatTimes = 5;
         private const bool OnlyParallel = false;
 
         static void Main(string[] args)
@@ -167,28 +167,32 @@ namespace MultipleMatricesTester
 
         private static float GetSpeedup(long sequentialTime, long parallelTime) =>
             (sequentialTime == 0 ? 0.1f : sequentialTime) / (parallelTime == 0 ? 0.1f : parallelTime);
+        private static float GetSpeedup(float sequentialTime, float parallelTime) =>
+            (sequentialTime == 0 ? 0.1f : sequentialTime) / (parallelTime == 0 ? 0.1f : parallelTime);
 
         private static AverageResult GetAverageResult(List<ComparisonResult> comparisonResults)
         {
+            float averageSequentialTime = (float) comparisonResults
+                .Select(result => result.SequentialResult.Time)
+                .Average();
+            
+            float averageParallelTime = (float) comparisonResults
+                .Select(result => result.ParallelResult.Time)
+                .Average();
+            
             return new AverageResult(
                 comparisonResults.Count,
                 comparisonResults
                     .First().MatrixSize,
-                comparisonResults
-                    .Select(result => GetSpeedup(result.SequentialResult.Time, result.ParallelResult.Time))
-                    .Average(),
-                (float) comparisonResults
-                    .Select(result => result.SequentialResult.Time)
-                    .Average(),
+                GetSpeedup(averageSequentialTime, averageParallelTime),
+                averageSequentialTime,
                 (int) comparisonResults
                     .Where(result => result.SequentialResult.Path.IsPathExisting)
                     .Select(result => result.SequentialResult.Path?.Nodes.Count)
                     .Average(),
                 comparisonResults
                     .Count(result => result.SequentialResult.Path.IsPathExisting),
-                (float) comparisonResults
-                    .Select(result => result.ParallelResult.Time)
-                    .Average(),
+                averageParallelTime,
                 (int) comparisonResults
                     .Where(result => result.ParallelResult.Path.IsPathExisting)
                     .Select(result => result.ParallelResult.Path?.Nodes.Count)

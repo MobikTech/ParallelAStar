@@ -20,7 +20,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/85439f6eae98fa347ee1d64e1d66ef769eaa9e98ad0a848cca2f75fdead69/String.Manipulation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ae3b8c2352644cb8bd63d2fff2c579a12200/4c/db3c21ba/ListView`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7282cd7d3954f72ff4e3c638e5837c18bfa84731a41a371ca5fbee5d878868d/Task.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fd5774dddb9bdcbed2a15126b9cf796867223e95ca85c7d37f77477d345b/Monitor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3c9310ac1c5754bf34caa7c11d8b5a4b1f814d9a6f519a35a8e2d2aa0f57a60/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9c3db527145fc2102591d8515f31de211437e4119023a9f77b6e4283b6f8b/Thread.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
@@ -117,7 +116,9 @@
       <workItem from="1656520194212" duration="202000" />
       <workItem from="1656525093183" duration="1875000" />
       <workItem from="1656577282691" duration="10818000" />
-      <workItem from="1656599429969" duration="66940000" />
+      <workItem from="1656599429969" duration="67025000" />
+      <workItem from="1656965437052" duration="569000" />
+      <workItem from="1657101107207" duration="5119000" />
     </task>
     <servers />
   </component>
